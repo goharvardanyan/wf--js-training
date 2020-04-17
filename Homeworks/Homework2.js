@@ -5,7 +5,7 @@ function isPrime(n) {
     if (n === 1) {
         Prime = "No";
     }
-    for (let i = 2; i <= n / 2; i++) {
+    for (let i = 2; i <= Math.sqrt(n); i++) {
         if(n % i === 0) {
             Prime = "No";
             break;
@@ -96,9 +96,6 @@ function sumProduct(n) {
  function createArray(a,b,c) {
      let resultArray = [];
      resultArray[0] = a;
-     if( c === 1) {
-         return resultArray;
-     }
      let d = (b - a) / (c - 1);
      for (let i = 0; i < c - 1; i++) {
          resultArray[i + 1] = resultArray[i] + d;
@@ -134,13 +131,10 @@ function pad1(array, padAmount, repeat) {
     }
     let fromTheBeginning = array.slice(0, padAmount);
     let fromTheEnd = array.slice(array.length - padAmount, array.length);
-     
+    
     for (let i = 0; i < repeat; i++) {
-        for (let j = fromTheBeginning.length - 1; j >= 0; j--) {
-        array.unshift(fromTheBeginning[j]);
-        }
-        for(let j = 0; j < fromTheEnd.length; j++)  
-        array.push(fromTheEnd[j]);
+        array = fromTheBeginning.concat(array);
+        array = array.concat(fromTheEnd);
     }
      return array;
 }
