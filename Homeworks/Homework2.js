@@ -5,7 +5,7 @@ function isPrime(n) {
     if (n === 1) {
         Prime = "No";
     }
-    for (let i = 2; i < n / 2; i++) {
+    for (let i = 2; i <= n / 2; i++) {
         if(n % i === 0) {
             Prime = "No";
             break;
@@ -19,13 +19,13 @@ function isPrime(n) {
 (Fibonacci series: 0, 1, 1, 2, 3, 5, 8 …, ak = ak-1 + ak-2). */
 
 function fibonacci(n) {
-      let arr = [];
-      arr[0] = 0;
-      arr[1] = 1;
-      for(let i = 0; i < n - 2; i++) {
-          arr[i + 2] = arr[i] + arr[i + 1];
-      }
-      return arr[n - 1];
+    let arr = [];
+    arr[0] = 0;
+    arr[1] = 1;
+    for(let i = 0; i < n - 2; i++) {
+        arr[i + 2] = arr[i] + arr[i + 1];
+    }
+       return arr[n - 1];
   }
 
 
