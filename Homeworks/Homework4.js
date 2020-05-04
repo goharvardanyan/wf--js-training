@@ -74,6 +74,58 @@ function shiftElements(array, n) {
 console.log(shiftElements(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], 3))
 
 
+// Problem 6.
+
+
+function subArray(array, length) {
+    let expectedLength = factorial(array.length) / (factorial(length) * factorial(array.length - length));
+    let newArr = [];
+    let count = 1;
+    let ind = 1;
+    
+    let tempArray = new Array(length);
+    for (let k = 0; k < length; k++) {
+        tempArray[k] = k;
+    }
+    
+    let tempArrayCopy = tempArray.slice(0);
+    while (newArr.length !== expectedLength) {
+        let subArray = [];
+        for (let j = 0; j < tempArray.length; j++) {   
+            subArray.push(array[tempArray[j]]);
+        }
+        newArr.push(subArray);
+        tempArray[length - 1] = tempArray[length - 1] + 1;
+        if (tempArray[length - 1] === array.length) {  
+            count++;
+                if (tempArray[length - count + 1] - tempArray[length - count] !== 1) {
+                    let arr = tempArray.slice(0, length - count);
+                    tempArray = tempArrayCopy.slice(length - count).map(val => val + ind);
+                    tempArray = arr.concat(tempArray);
+                    ind++;
+                    if (count === length) {
+                        count--;
+                    }
+                }
+                if (tempArray[length - 1] !== array.length - 1){
+                    count--;
+                } else {
+                    ind = tempArray[0] + 1;
+                }   
+        }      
+    } 
+    return newArr;
+}
+
+
+function factorial(n) {
+    let res = 1;
+    for(let i = 1; i <= n; i++) {
+        res = res * i;
+    } return res;
+}
+
+
 
 
 // Problem 7. Create constructor function which instances would be objects with already
