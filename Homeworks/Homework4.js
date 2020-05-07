@@ -139,7 +139,6 @@ function subArray(array, length) {
         }
         else  {  
                 if (tempArray[length - count + 1] - tempArray[length - count] !== 1) {
-                    arrayTemp1 = tempArray.slice(0);
                     if(length === 2) {
                         tempArray = tempArrayCopy.map(val => val + ind);
                     }
@@ -174,6 +173,8 @@ function factorial(n) {
         res = res * i;
     } return res;
 }
+
+
 
 
 
