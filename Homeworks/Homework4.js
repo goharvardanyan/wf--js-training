@@ -111,6 +111,72 @@ console.log(createTree([
 
 
 
+// Problem 6.
+
+
+
+function subArray(array, length) {
+    let expectedLength = factorial(array.length) / (factorial(length) * factorial(array.length - length));
+    let newArr = [];
+    
+    let ind = 1;
+    
+    let tempArray = new Array(length);
+    for (let k = 0; k < length; k++) {
+        tempArray[k] = k;
+    }
+    
+    let tempArrayCopy = tempArray.slice(0);
+    let count = 2;
+    while (newArr.length !== expectedLength) {
+        let subArray = [];
+        for (let j = 0; j < tempArray.length; j++) {   
+            subArray.push(array[tempArray[j]]);
+        }
+        newArr.push(subArray);
+        if(tempArray[length - 1] !== array.length - 1){
+            tempArray[length - 1] = tempArray[length - 1] + 1;
+        }
+        else  {  
+                if (tempArray[length - count + 1] - tempArray[length - count] !== 1) {
+                    arrayTemp1 = tempArray.slice(0);
+                    if(length === 2) {
+                        tempArray = tempArrayCopy.map(val => val + ind);
+                    }
+                    else{
+                        let arr = tempArray.slice(0, length - count);
+                        tempArray = tempArrayCopy.slice(length - count).map(val => val + ind);
+                        tempArray = arr.concat(tempArray);
+                    }
+                    if (tempArray[length - 1] === array.length - 1 ){
+                        let k = 1;
+                    while(tempArray[length - k] - tempArray[length - k - 1] === 1 && k !== length ) {
+                        k++;
+                    }
+                    count = length - tempArrayCopy[length - k - 1];
+                    } else {
+                        count = 2;
+                    }
+                    ind++;
+                }    
+                if (tempArray[length - 1] === array.length - 1 ){ 
+                    ind = tempArray[length - count] + 1 - tempArrayCopy[length - count]; 
+                }                     
+        }      
+    } 
+    return newArr;
+}
+
+
+function factorial(n) {
+    let res = 1;
+    for(let i = 1; i <= n; i++) {
+        res = res * i;
+    } return res;
+}
+
+
+
 
 
 // Problem 7. Create constructor function which instances would be objects with already
