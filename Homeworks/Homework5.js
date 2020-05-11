@@ -46,7 +46,7 @@ function createTree(array, resObj = {}, curId = findRoot(array,'root')) {
 
 function findRoot(array, id) {
     for (let i = 0; i < array.length; i++){
-        if(Object.values(array[i])[0] == id){
+        if(Object.values(array[i])[0] === id){
             return array[i];
         }
     }
@@ -54,7 +54,7 @@ function findRoot(array, id) {
 
 
 let array = [
-    {id : "root", children : [1,2]},
+    
     {id : 1, children : [3,4]},
     {id : 2, children : [5]},
     {id : 3, children : []}, 
