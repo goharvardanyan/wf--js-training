@@ -27,8 +27,8 @@ console.log(binarySearch([1,3,5,7,9,11,13,15,17],11))
 // Problem 2.
 
 function createTree(array, resObj = {}, curId = findRoot(array,'root')) {
-    let tempArr = Object.values(curId)[1];
-    let tempObj = Object.values(curId)[0];
+    let tempArr = curId.children;
+    let tempObj = curId.id;
     let newObj = {};
     if (tempArr.length !== 0){
         for (let i = 0; i < tempArr.length; i++) {
@@ -39,19 +39,18 @@ function createTree(array, resObj = {}, curId = findRoot(array,'root')) {
         }
         return resObj;
     } else {
-        newObj[Object.values(curId)[0]] = {};
+        newObj[curId.id] = {};
         return newObj;
     }
 }
 
 function findRoot(array, id) {
     for (let i = 0; i < array.length; i++){
-        if(Object.values(array[i])[0] === id){
+        if(array[i].id === id){
             return array[i];
         }
     }
 }
-
 
 let array = [
     {id : "root", children : [1,2]},
