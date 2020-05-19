@@ -43,7 +43,45 @@ function isPalindrom(string) {
     return true;
 }
 
-console.log(isPalindrom("asdftfdsa"));
+
+
+
+// Added version(ignoring capital letters, punctuation, and word dividers).
+
+function isLetterOrNumber(char) {
+    if (char.toLowerCase() !== char.toUpperCase()) {
+        return true;
+    }
+    if (char.charCodeAt() >= 48 && char.charCodeAt() <= 57) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function isPalindrom2(string) {
+    let i = 0;
+    let j = string.length - 1;
+    let str = string.toLowerCase();
+    while(i < j) {
+        if(!isLetterOrNumber(str[i]) || !isLetterOrNumber(str[j])) {
+           if (!isLetterOrNumber(str[i])) i++;
+           if (!isLetterOrNumber(str[j])) j--; 
+        } else if (str[j] === str[i]) {
+            i++;
+            j--;
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
+
+console.log(isPalindrom2("A man, a plan, a canal, Panama!"))
+
+
+
 
 // Problem 4. Given a word and a list of possible anagrams, select the correct sublist.
 
